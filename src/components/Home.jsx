@@ -77,7 +77,7 @@ const Home = ({ addAchievement }) => {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="bg-gray-900 min-h-screen text-gray-300 mt-4 mb-4 flex items-center justify-center px-4">
+    <div className="bg-gray-900 text-gray-300 mt-6 mb-6 md:mt-4 md:mb-4 flex items-center justify-center px-4">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-4xl">
         <h2 className="text-2xl font-bold text-white mb-6">Add Achievement</h2>
         <form onSubmit={handleSubmit}>
