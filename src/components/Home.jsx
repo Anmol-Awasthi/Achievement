@@ -10,6 +10,7 @@ const Home = ({ addAchievement }) => {
     category: '',
     date: '',
     file: null,
+    fileUrl: ''
   });
 
   const [errors, setErrors] = useState({});
@@ -35,11 +36,14 @@ const Home = ({ addAchievement }) => {
   };
 
   const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    const fileUrl = URL.createObjectURL(file);
     setForm({
       ...form,
-      file: e.target.files[0],
+      file,
+      fileUrl
     });
-    localStorage.setItem('achievementFormData', JSON.stringify({ ...form, file: e.target.files[0] }));
+    localStorage.setItem('achievementFormData', JSON.stringify({ ...form, file, fileUrl }));
   };
 
   const validate = () => {
@@ -62,6 +66,7 @@ const Home = ({ addAchievement }) => {
         category: '',
         date: '',
         file: null,
+        fileUrl: ''
       });
       navigate('/achievements');
       localStorage.removeItem('achievementFormData');
