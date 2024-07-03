@@ -11,10 +11,11 @@ const App = () => {
   });
 
   const addAchievement = (achievement) => {
-    const newAchievements = [...achievements, { ...achievement, id: Date.now() }];
+    const newAchievements = [{ ...achievement, id: Date.now() }, ...achievements];
     setAchievements(newAchievements);
     localStorage.setItem('achievements', JSON.stringify(newAchievements));
   };
+  
 
   const deleteAchievement = (id) => {
     const updatedAchievements = achievements.filter((achievement) => achievement.id !== id);
