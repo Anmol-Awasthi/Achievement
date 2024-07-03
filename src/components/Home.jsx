@@ -50,6 +50,7 @@ const Home = ({ addAchievement }) => {
     const tempErrors = {};
     if (!form.title) tempErrors.title = 'Title is required';
     if (!form.description) tempErrors.description = 'Description is required';
+    if (!form.category) tempErrors.category = 'Category is required';
     if (!form.date) tempErrors.date = 'Date achieved is required';
     if (!form.file) tempErrors.file = 'A media file is required';
     setErrors(tempErrors);
@@ -76,7 +77,7 @@ const Home = ({ addAchievement }) => {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="bg-gray-900 m-h-screen text-gray-300 mt-4 mb-4 flex items-center justify-center px-4">
+    <div className="bg-gray-900 min-h-screen text-gray-300 mt-4 mb-4 flex items-center justify-center px-4">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-4xl">
         <h2 className="text-2xl font-bold text-white mb-6">Add Achievement</h2>
         <form onSubmit={handleSubmit}>
@@ -121,6 +122,7 @@ const Home = ({ addAchievement }) => {
               <option value="Education">Education</option>
               <option value="Other">Other</option>
             </select>
+            {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
           </div>
 
           <div className="mb-4">

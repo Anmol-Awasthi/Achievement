@@ -32,14 +32,20 @@ const Achievements = ({ achievements, deleteAchievement }) => {
               <p className="text-gray-400 mb-2">Category: {achievement.category}</p>
               <p className="text-gray-400 mb-2">Date Achieved: {achievement.date}</p>
               <div className="flex items-center justify-between">
-                {achievement.fileUrl && (
-                  <div className="w-20 h-20 overflow-hidden rounded-lg mr-4">
-                    <img
-                      src={achievement.fileUrl}
-                      alt="Achievement Media"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                {achievement.fileUrl ? (
+                  achievement.file.type.startsWith('image') ? (
+                    <div className="w-20 h-20 overflow-hidden rounded-lg mr-4">
+                      <img
+                        src={achievement.fileUrl}
+                        alt="Achievement Media"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <p className="text-gray-400">{achievement.file.name}</p>
+                  )
+                ) : (
+                  <p className="text-gray-400">No media uploaded</p>
                 )}
                 <button
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
