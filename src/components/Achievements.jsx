@@ -4,19 +4,16 @@ const Achievements = ({ achievements, deleteAchievement }) => {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [achievementToDelete, setAchievementToDelete] = useState(null);
 
-  // Function to handle deletion of an achievement
   const handleDelete = (id) => {
     setAchievementToDelete(id);
     setShowDeleteConfirmation(true);
   };
 
-  // Confirm deletion
   const confirmDelete = () => {
     deleteAchievement(achievementToDelete);
     setShowDeleteConfirmation(false);
   };
 
-  // Cancel deletion
   const cancelDelete = () => {
     setShowDeleteConfirmation(false);
   };
@@ -24,7 +21,7 @@ const Achievements = ({ achievements, deleteAchievement }) => {
   return (
     <div className="bg-gray-900 min-h-screen text-gray-300 py-8">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-2xl font-bold text-white mb-6">Achievements</h2>
+        <h2 className="text-2xl font-bold text-white ml-4 mb-6">Achievements</h2>
         {achievements.length === 0 ? (
           <p className="text-gray-400">No achievements yet.</p>
         ) : (
@@ -38,7 +35,6 @@ const Achievements = ({ achievements, deleteAchievement }) => {
                 {achievement.file && (
                   <div className="w-20 h-20 overflow-hidden rounded-lg mr-4">
                     {typeof achievement.file === 'object' ? (
-                      // Check if the file is an image
                       achievement.file.type.startsWith('image') ? (
                         <img
                           src={URL.createObjectURL(achievement.file)}
@@ -66,7 +62,7 @@ const Achievements = ({ achievements, deleteAchievement }) => {
             </div>
           ))
         )}
-        {/* Delete Confirmation Overlay */}
+        
         {showDeleteConfirmation && (
           <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg shadow-lg text-center max-w-sm">

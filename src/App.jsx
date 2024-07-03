@@ -5,20 +5,17 @@ import Home from './components/Home';
 import Achievements from './components/Achievements';
 
 const App = () => {
-  // State to manage achievements
   const [achievements, setAchievements] = useState(() => {
     const storedAchievements = localStorage.getItem('achievements');
     return storedAchievements ? JSON.parse(storedAchievements) : [];
   });
 
-  // Function to add achievement
   const addAchievement = (achievement) => {
     const newAchievements = [...achievements, { ...achievement, id: Date.now() }];
     setAchievements(newAchievements);
     localStorage.setItem('achievements', JSON.stringify(newAchievements));
   };
 
-  // Function to delete achievement
   const deleteAchievement = (id) => {
     const updatedAchievements = achievements.filter((achievement) => achievement.id !== id);
     setAchievements(updatedAchievements);
