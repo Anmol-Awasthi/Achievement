@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Home = ({ addAchievement }) => {
   const navigate = useNavigate();
 
+   // State for form data
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -13,19 +14,24 @@ const Home = ({ addAchievement }) => {
     fileUrl: ''
   });
 
+    // State for form validation errors
   const [errors, setErrors] = useState({});
 
+  
+  // State for persisted form data from localStorage
   const [formDataFromStorage, setFormDataFromStorage] = useState(() => {
     const storedData = localStorage.getItem('achievementFormData');
     return storedData ? JSON.parse(storedData) : {};
   });
 
+   // Update form state with persisted data when it changes
   useEffect(() => {
     if (Object.keys(formDataFromStorage).length > 0) {
       setForm(formDataFromStorage);
     }
   }, [formDataFromStorage]);
 
+  // Handle changes in form input fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({
@@ -35,6 +41,7 @@ const Home = ({ addAchievement }) => {
     localStorage.setItem('achievementFormData', JSON.stringify({ ...form, [name]: value }));
   };
 
+    // Handle changes in file input field
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const fileUrl = URL.createObjectURL(file);
@@ -45,18 +52,20 @@ const Home = ({ addAchievement }) => {
     });
     localStorage.setItem('achievementFormData', JSON.stringify({ ...form, file, fileUrl }));
   };
-
+  
+  // Validate form data
   const validate = () => {
     const tempErrors = {};
     if (!form.title) tempErrors.title = 'Title is required';
     if (!form.description) tempErrors.description = 'Description is required';
     if (!form.category) tempErrors.category = 'Category is required';
-    if (!form.date) tempErrors.date = 'Date achieved is required';
-    if (!form.file) tempErrors.file = 'A media file is required';
+    if (!form.date) tempErrors.date = 'Date is required';
+    // if (!form.file) tempErrors.file = 'A media file is required';
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
 
+   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
@@ -74,8 +83,10 @@ const Home = ({ addAchievement }) => {
     }
   };
 
+    // Get current date for max date input
   const today = new Date().toISOString().split('T')[0];
 
+   // Render form
   return (
     <div className="bg-gray-900 text-gray-300 mt-6 mb-6 md:mt-4 md:mb-4 flex items-center justify-center px-4">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-4xl">

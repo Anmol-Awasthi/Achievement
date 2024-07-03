@@ -4,22 +4,25 @@ const Achievements = ({ achievements, deleteAchievement }) => {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [achievementToDelete, setAchievementToDelete] = useState(null);
 
+    // Function to handle the delete button click and show the confirmation modal
   const handleDelete = (id) => {
     setAchievementToDelete(id);
     setShowDeleteConfirmation(true);
   };
 
+  // Function to confirm the deletion of the selected achievement
   const confirmDelete = () => {
     deleteAchievement(achievementToDelete);
     setShowDeleteConfirmation(false);
   };
 
+    // Function to cancel the deletion and close the confirmation modal
   const cancelDelete = () => {
     setShowDeleteConfirmation(false);
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen text-gray-300 py-8">
+    <div className="bg-gray-900 text-gray-300 py-8">
       <div className="max-w-3xl mx-auto">
         <h2 className="text-2xl font-bold text-white ml-4 mb-6">Achievements</h2>
         {achievements.length === 0 ? (
