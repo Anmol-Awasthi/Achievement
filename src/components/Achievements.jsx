@@ -47,7 +47,7 @@ const Achievements = ({ achievements, deleteAchievement }) => {
               </p>
               <div className="flex items-center justify-between">
                 {achievement.fileUrl ? (
-                  achievement.file.type.startsWith("image") ? (
+                  achievement.file && achievement.file.type && achievement.file.type.startsWith("image") ? (
                     <div className="w-20 h-20 overflow-hidden rounded-lg mr-4">
                       <img
                         src={achievement.fileUrl}
